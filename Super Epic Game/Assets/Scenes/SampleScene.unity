@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 533250799}
   m_Layer: 0
   m_Name: Fences
-  m_TagString: Untagged
+  m_TagString: Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -634,7 +634,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &627824857
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc3a77da6b774d9db34efa0e9fac859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   anim: {fileID: 1757670330}
   sp: {fileID: 1757670329}
 --- !u!70 &1303706867
@@ -794,7 +794,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &1570627731
 GameObject:
@@ -4213,7 +4213,7 @@ GameObject:
   - component: {fileID: 2123290106}
   m_Layer: 0
   m_Name: Collisions
-  m_TagString: Untagged
+  m_TagString: Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
