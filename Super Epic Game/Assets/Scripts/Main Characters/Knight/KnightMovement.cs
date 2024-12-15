@@ -1,37 +1,94 @@
 using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class KnightMovement : MonoBehaviour
 {
     public float speed = 5f;
+    public float collisionOffset = 0.05f;
+    public ContactFilter2D movementFilter;
+    Vector2 movementInput;
+    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    bool canMove = true;
+
+
     public Animator anim;
     public SpriteRenderer sp;
+    private Rigidbody2D rb;
+
+    public string direction = "left";
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        
+        if (canMove)
+        {
+            if (movementInput != Vector2.zero)
+            {
+                bool success = TryMove(movementInput);
 
-        Vector3 direction = new Vector3(horizontal, vertical);
+                if (!success)
+                {
+                    success = TryMove(new Vector2(movementInput.x, 0));
 
-        transform.position += direction * speed * Time.deltaTime;
+                    if (!success)
+                        success = TryMove(new Vector2(0, movementInput.y));
+                }
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-            sp.flipX = true;
-            anim.SetFloat("isMoving", 1);
-        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-            sp.flipX = false;
-            anim.SetFloat("isMoving", 1);
-        } else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
-            anim.SetFloat("isMoving", 1);
-        } else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-            anim.SetFloat("isMoving", 1);
-        } else {
-            anim.SetFloat("isMoving", 0);
+                if (success) {
+                    anim.SetFloat("isMoving", 1);
+                } else {
+                    anim.SetFloat("isMoving", 0);
+                }
+
+            }
+            else
+            {
+                anim.SetFloat("isMoving", 0);
+
+            }
+
+            // set direction of sprite to movement direction
+            if (movementInput.x < 0)
+            {
+                sp.flipX = true;
+                direction = "left";
+                
+            }
+            else if (movementInput.x > 0)
+            {
+                sp.flipX = false;
+                direction = "right";
+            }
+
+            
         }
+    }
+
+    private bool TryMove(Vector2 direction)
+    {
+        int count = rb.Cast(direction, movementFilter, castCollisions, speed * Time.fixedDeltaTime + collisionOffset);
+
+        if (count == 0)
+        {
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    void OnMove(InputValue moveVal)
+    {
+        movementInput = moveVal.Get<Vector2>();
     }
 }
