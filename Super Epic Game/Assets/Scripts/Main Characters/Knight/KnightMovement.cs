@@ -31,10 +31,7 @@ public class KnightMovement : MonoBehaviour
         float diagMult = 1f;
         if(movementInput.x != 0 && movementInput.y != 0)
         {
-            Debug.Log("Moving diagonally");
             diagMult = 1.414214f;
-        } else {
-            Debug.Log("Not moving diagonally");
         }
         if (canMove)
         {
