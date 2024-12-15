@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 
 public class KnightMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float collisionOffset = 0.05f;
+    public float speed;
+    public float collisionOffset;
     public ContactFilter2D movementFilter;
     Vector2 movementInput;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
@@ -28,19 +28,26 @@ public class KnightMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        float diagMult = 1f;
+        if(movementInput.x != 0 && movementInput.y != 0)
+        {
+            Debug.Log("Moving diagonally");
+            diagMult = 1.414214f;
+        } else {
+            Debug.Log("Not moving diagonally");
+        }
         if (canMove)
         {
             if (movementInput != Vector2.zero)
             {
-                bool success = TryMove(movementInput);
+                bool success = TryMove(movementInput, diagMult);
 
                 if (!success)
                 {
-                    success = TryMove(new Vector2(movementInput.x, 0));
+                    success = TryMove(new Vector2(movementInput.x, 0), diagMult);
 
                     if (!success)
-                        success = TryMove(new Vector2(0, movementInput.y));
+                        success = TryMove(new Vector2(0, movementInput.y), diagMult);
                 }
 
                 if (success) {
@@ -71,15 +78,19 @@ public class KnightMovement : MonoBehaviour
 
             
         }
+        if(movementInput != Vector2.zero) 
+            {
+            anim.SetFloat("isMoving", 1);
+            }
     }
 
-    private bool TryMove(Vector2 direction)
+    private bool TryMove(Vector2 direction, float multiplier)
     {
         int count = rb.Cast(direction, movementFilter, castCollisions, speed * Time.fixedDeltaTime + collisionOffset);
 
         if (count == 0)
         {
-            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + direction * speed * multiplier * Time.fixedDeltaTime);
             return true;
         } else
         {
