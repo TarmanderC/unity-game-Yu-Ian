@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public List<GameObject> players;
+    public List<GameObject> enemies;
     private bool isBattleActive = false;
     private Transform playerTransform;
     public Transform cameraTransform;
@@ -15,17 +18,20 @@ public class BattleManager : MonoBehaviour
         cameraTransform.position = new Vector3(0,0,-10);
     }
 
-    public void StartBattle(GameObject player, GameObject enemy) {
+    public void StartBattle(List<GameObject> players, List<GameObject> enemies) {
         if (!isBattleActive) {
             isBattleActive = true;
             cameraTransform.position = new Vector3(-25,-25,-10);
-            Debug.Log($"Battle started with {player.name} and {enemy.name}");
+            this.players = players;
+            this.enemies = enemies;
         }
     }
 
     public void EndBattle() {
         isBattleActive = false;
         cameraTransform.position = playerTransform.position;
+        players.Clear();
+        enemies.Clear();
         Debug.Log("Battle ended!");
     }
 
