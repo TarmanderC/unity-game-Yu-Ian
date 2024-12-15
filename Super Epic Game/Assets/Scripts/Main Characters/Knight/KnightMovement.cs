@@ -12,7 +12,7 @@ public class KnightMovement : MonoBehaviour
     public ContactFilter2D movementFilter;
     Vector2 movementInput;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    bool canMove = true;
+    public bool canMove = true;
 
 
     public Animator anim;

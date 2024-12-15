@@ -171,6 +171,8 @@ MonoBehaviour:
   players: []
   enemies: []
   cameraTransform: {fileID: 519420032}
+  playerStage: {fileID: 1982371918}
+  enemyStage: {fileID: 822276980}
 --- !u!4 &166101996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 915945021408061518, guid: 68f9b7cd49e644cf88bdcd2d78477c58, type: 3}

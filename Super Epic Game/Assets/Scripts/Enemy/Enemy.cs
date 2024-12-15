@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    public List<GameObject> enemies;
+    public GameObject[] enemies = new GameObject[4];
     private BattleManager bm;
     private KnightBattle player;
     private bool isPlayerClose = false;

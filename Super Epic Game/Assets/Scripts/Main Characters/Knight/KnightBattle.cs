@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KnightBattle : MonoBehaviour
 {
-    public List<GameObject> currentParty;
+    public GameObject[] currentParty = new GameObject[4];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
