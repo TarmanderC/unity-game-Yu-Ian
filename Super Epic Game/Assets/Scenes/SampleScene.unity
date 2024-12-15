@@ -4090,7 +4090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc3a77da6b774d9db34efa0e9fac859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   collisionOffset: 0.02
   movementFilter:
     useTriggers: 0
