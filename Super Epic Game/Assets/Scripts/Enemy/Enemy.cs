@@ -1,17 +1,19 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
+    public List<GameObject> enemies;
     private BattleManager bm;
-    private GameObject player;
+    private KnightBattle player;
     private bool isPlayerClose = false;
     
     void Awake()
     {
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<KnightBattle>();
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class Enemy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isPlayerClose) {
             Debug.Log("Player?????");
-            bm.StartBattle(player, gameObject);
+            bm.StartBattle(player.currentParty, enemies);
         }
     }
 
