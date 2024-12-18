@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915945021408061518}
   - component: {fileID: 3854426777468788682}
+  - component: {fileID: 6744806428614176419}
   m_Layer: 0
   m_Name: PlaceholderEnemy1
   m_TagString: Untagged
@@ -87,3 +88,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6744806428614176419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416534146595246391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8611c5de37f49a4b5a4bf07c2ec3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Enemy
+  maxHealth: 100
+  currentHealth: 0
+  TU: 0
+  isPlayerControlled: 0
+  currentAttack: 
+  selectedEnemy: {fileID: 0}

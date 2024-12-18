@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -14,6 +16,13 @@ public class BattleManager : MonoBehaviour
 
     private KnightMovement playerMovement;
 
+
+    public Transform playerSpawnPoint;
+    public Transform enemySpawnPoint;
+    public Vector3[] playerPositions;
+    public Vector3[] enemyPositions;
+
+
     void Awake() {
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         playerMovement = GameObject.Find("Player").GetComponent<KnightMovement>();
@@ -22,6 +31,8 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         cameraTransform.position = new Vector3(0,0,-10);
+
+
     }
 
     public void StartBattle(GameObject[] players, GameObject[] enemies) {
@@ -30,27 +41,32 @@ public class BattleManager : MonoBehaviour
             playerMovement.canMove = false;
 
             isBattleActive = true;
-            cameraTransform.position = new Vector3(-25,-25,-10);
+            cameraTransform.position = new Vector3(-25,-26,-10);
+
             this.players = players;
             this.enemies = enemies;
 
-            setUpPlayers();
+            InitializeUnits(players, enemies);
         }
     }
 
-    private void setUpPlayers() {
+    private void InitializeUnits(GameObject[] players, GameObject[] enemies) {
         for (int i = 0; i < players.Length; i++) {
-            if (players[i] != null) {
-                switch (i)
+                if (players[i] != null)
                 {
-                    case 0:
-                        Instantiate(players[i], playerStage);
-                        break;
+                    GameObject player = Instantiate(players[i], playerPositions[i], Quaternion.identity);
+                    player.transform.SetParent(playerSpawnPoint);
                 }
             }
-        }
-    }
 
+            for (int i = 0; i < enemies.Length; i++) {
+                if (enemies[i] != null)
+                {
+                    GameObject enemy = Instantiate(enemies[i], enemyPositions[i], Quaternion.identity);
+                    enemy.transform.SetParent(enemySpawnPoint);
+                }
+            }
+    }
     public void EndBattle() {
         isBattleActive = false;
         playerMovement.canMove = true;

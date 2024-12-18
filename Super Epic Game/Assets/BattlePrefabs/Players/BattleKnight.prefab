@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2708012124362668852}
   - component: {fileID: 9093086357457736307}
+  - component: {fileID: 1896144601099415828}
   m_Layer: 0
   m_Name: BattleKnight
   m_TagString: Untagged
@@ -87,3 +88,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1896144601099415828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18538892362087243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8611c5de37f49a4b5a4bf07c2ec3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Player
+  maxHealth: 100
+  currentHealth: 0
+  TU: 0
+  isPlayerControlled: 1
+  currentAttack: 
+  selectedEnemy: {fileID: 0}
