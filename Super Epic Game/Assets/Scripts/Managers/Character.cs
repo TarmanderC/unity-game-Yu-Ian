@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int TU = 0;
-    public bool isPlayerControlled;
+    public bool isPlayer;
 
     public String currentAttack = "";
     public int selectedEnemy;

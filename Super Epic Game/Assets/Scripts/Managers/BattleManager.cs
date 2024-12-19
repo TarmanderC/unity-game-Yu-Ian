@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
     public Transform enemyStage;
 
     private KnightMovement playerMovement;
+    public TurnManager tm;
 
 
     public Transform playerSpawnPoint;
